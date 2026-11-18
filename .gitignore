@@ -1,0 +1,6 @@
+private/
+*.log
+__pycache__/
+*.pyc
+*.bak
+*.pid

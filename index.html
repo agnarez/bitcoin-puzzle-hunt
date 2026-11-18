@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin Puzzle Hunt — agnarez</title>
+<meta name="description" content="Hunting the five known pubkey-exposed Bitcoin puzzles (#140–#160) for 75 BTC combined. Live progress, solver code, and research by agnarez.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0b0e14; color: #e6e9f0; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55; }
+  a { color: #f7931a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { text-align: center; padding: 28px 0 8px; }
+  .avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #f7931a, #ffb347); display: flex; align-items: center; justify-content: center; font-size: 44px; margin: 0 auto 14px; }
+  h1 { font-size: 32px; letter-spacing: -0.5px; }
+  .tagline { color: #9aa3b2; margin-top: 6px; font-size: 16px; }
+  .links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; }
+  .links a { border: 1px solid #2a3140; border-radius: 999px; padding: 7px 16px; color: #e6e9f0; font-size: 14px; }
+  .links a:hover { border-color: #f7931a; color: #f7931a; text-decoration: none; }
+  .live { display: inline-flex; align-items: center; gap: 8px; background: #12241a; border: 1px solid #1f7a4d; color: #4ade80; border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; margin-top: 14px; }
+  .live .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  section { margin-top: 36px; }
+  h2 { font-size: 20px; margin-bottom: 12px; border-bottom: 1px solid #1e2431; padding-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .card { background: #12161f; border: 1px solid #1e2431; border-radius: 12px; padding: 16px; }
+  .card .num { font-size: 26px; font-weight: 700; color: #f7931a; }
+  .card .label { color: #9aa3b2; font-size: 13px; margin-top: 2px; }
+  .card .sub { font-size: 13px; color: #6b7484; margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid #1e2431; }
+  th { color: #9aa3b2; font-weight: 600; }
+  td.addr { font-family: ui-monospace, monospace; font-size: 12px; word-break: break-all; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .btn { display: inline-block; background: #f7931a; color: #111; font-weight: 700; border-radius: 10px; padding: 11px 20px; font-size: 15px; }
+  .btn:hover { background: #ffb347; text-decoration: none; }
+  .btn.ghost { background: transparent; color: #e6e9f0; border: 1px solid #2a3140; }
+  .btn.ghost:hover { border-color: #f7931a; color: #f7931a; }
+  .note { background: #12161f; border: 1px solid #1e2431; border-left: 3px solid #f7931a; border-radius: 8px; padding: 14px 16px; font-size: 14px; color: #c3cad8; }
+  .honest { color: #9aa3b2; font-size: 14px; }
+  footer { margin-top: 48px; text-align: center; color: #6b7484; font-size: 13px; }
+  code { font-family: ui-monospace, monospace; background: #1a1f2b; padding: 2px 6px; border-radius: 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="avatar">₿</div>
+    <h1>agnarez</h1>
+    <p class="tagline">Bitcoin Puzzle Hunter — chasing the five known pubkey-exposed puzzles, 75 BTC combined.</p>
+    <div class="links">
+      <a href="https://github.com/agnarez">GitHub</a>
+      <a href="https://x.com/agnarez_">X</a>
+      <a href="https://t.me/agnarez">Telegram</a>
+      <a href="https://linktr.ee/agnarez">Linktree</a>
+    </div>
+    <div><span class="live"><span class="dot"></span> HUNT LIVE — RUNNING · puzzle #140</span></div>
+  </header>
+
+  <section>
+    <h2>Live progress</h2>
+    <div class="grid">
+      <div class="card"><div class="num">708,504,000</div><div class="label">Main search ops — puzzle #140</div><div class="sub">Pollard Kangaroo, centre-out, front 50% · ~4,500 ops/s</div></div>
+      <div class="card"><div class="num">160.17 B</div><div class="label">Keys checked — C-scan</div><div class="sub">Fast C scanner, front half key-by-key · ~295,000 keys/s · 32,034 slices</div></div>
+      <div class="card"><div class="num">150 B ✓</div><div class="label">Milestone reached</div><div class="sub">C-scan passed 150,000,000,000 keys on 2026-11-18 ~00:14 WIB</div></div>
+      <div class="card"><div class="num">493+</div><div class="label">Watchdog restarts</div><div class="sub">Across machine replacements — no work lost</div></div>
+    </div>
+    <p class="honest" style="margin-top:12px">Numbers as of 2026-11-18. Full live numbers: <a href="hunt-progress.json">hunt-progress.json</a> · <a href="progress-history.md">progress history</a> · <a href="https://muse.ai/s/bitcoin-puzzle-hunt-live-progress-qd6xa6jvxxlrq/Vk-N8ZR5QNjnJA0mbiR_MXl0W1Ly2wczzIq2PG9ofR4">live progress site</a></p>
+  </section>
+
+  <section>
+    <h2>The five targets — all still unsolved</h2>
+    <table>
+      <tr><th>Puzzle</th><th>Address</th><th>Prize</th><th>Range</th></tr>
+      <tr><td>#140</td><td class="addr">1QKBaU6WAeycb3DbKbLBkX7vJiaS8r42Xo</td><td>14 BTC</td><td>2^139 – 2^140</td></tr>
+      <tr><td>#145</td><td class="addr">19GpszRNUej5yYqxXoLnbZWKew3KdVLkXg</td><td>14.5 BTC</td><td>2^144 – 2^145</td></tr>
+      <tr><td>#150</td><td class="addr">1MUJSJYtGPVGkBCTqGspnxyHahpt5Te8jy</td><td>15 BTC</td><td>2^149 – 2^150</td></tr>
+      <tr><td>#155</td><td class="addr">1AoeP37TmHdFh8uN72fu9AqgtLrUwcv2wJ</td><td>15.5 BTC</td><td>2^154 – 2^155</td></tr>
+      <tr><td>#160</td><td class="addr">1NBC8uXJy1GiJ6drkiZa1WuKn51ps7EPTv</td><td>16 BTC</td><td>2^159 – 2^160</td></tr>
+    </table>
+    <p class="honest" style="margin-top:12px">Honest odds: among the 83 solved keys there is no front clustering, so front-50% / centre-out / reversed scanning does not change the expected Kangaroo work (~2^69.5 ops for #140) — it only changes which keys would be found early. #140 is ~5.7x the work of solved puzzle #135; #160 is ~5,800x. A long hunt, run on free machines.</p>
+  </section>
+
+  <section>
+    <h2>The machines</h2>
+    <div class="grid">
+      <div class="card"><div class="label" style="color:#e6e9f0;font-size:15px;font-weight:700">Pollard Kangaroo</div><div class="sub">Forward / reversed / centre-out, distinguished points, checkpoints, batch-inversion speedup (~6.5x). The main runner.</div></div>
+      <div class="card"><div class="label" style="color:#e6e9f0;font-size:15px;font-weight:700">BSGS + sequential</div><div class="sub">Baby-step giant-step forward and reversed, plus a sequential reversed / centre-out / midpoint scanner.</div></div>
+      <div class="card"><div class="label" style="color:#e6e9f0;font-size:15px;font-weight:700">Fast C scanner</div><div class="sub">OpenSSL-based, checks the front half key-by-key in 5M-key slices. 160B+ keys checked so far.</div></div>
+      <div class="card"><div class="label" style="color:#e6e9f0;font-size:15px;font-weight:700">GPU launch files</div><div class="sub">56 ready-to-run files for RCKangaroo, JeanLucPons Kangaroo, KeyHunt BSGS, collider and Coin Cracker — all five puzzles.</div></div>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://github.com/agnarez/bitcoin-puzzle-hunt">View the code on GitHub</a>
+      <a class="btn ghost" href="https://muse.ai/s/bitcoin-puzzle-hunt-research-xtxu6xa8ubzdgx0/axoghp0rB4ISigDvMiSogBS0IxjdLZeOHVcGPvN2LQQ">Research page</a>
+      <a class="btn ghost" href="https://github.com/agnarez/burner-wallet">Burner Wallet</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Try it</h2>
+    <p class="honest"><code>python3 solver/test_smoke.py</code> — smoke test, 13/13 PASS on a synthetic key.<br><br>
+    <code>python3 solver/run_hunt.py --puzzle 140 --method kangaroo-centre-out --window front50 --dp-bits 12 --max-ops 200000</code> — one Kangaroo chunk on #140.</p>
+  </section>
+
+  <section>
+    <div class="note"><strong>Found-key rule, locked in:</strong> if a private key is ever found, it goes only to agnarez, privately. It never appears in this repo, in any log, or on any website. A public announcement says only “SOLVED — puzzle #, date, ops searched”, after the funds are safely moved. Claiming uses a private / direct-to-miner submission, never a public mempool broadcast.</div>
+  </section>
+
+  <footer>© 2026 agnarez · Built with Muse and the crew: dra69on, aoxy, 0xindy, 0xfinu, zync, claude.ai research · Everything free, $0.</footer>
+</div>
+</body>
+</html>

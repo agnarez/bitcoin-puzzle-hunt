@@ -1,0 +1,84 @@
+{
+  "last_updated": "2026-11-18",
+  "note": "ops_searched counts group operations / keys checked. No private key is ever stored in this file. On a solve, status becomes solved with date and ops only.",
+  "puzzles": {
+    "140": {
+      "status": "unsolved",
+      "ops_searched": 709104000,
+      "kangaroo_ops": 709100000,
+      "sequential_keys_checked": 4000,
+      "ranges_covered": [
+        {
+          "window": "front50",
+          "method": "scan-centre-out",
+          "start_hex": "80000000000000000000000000000000000",
+          "end_hex": "bffffffffffffffffffffffffffffffffff",
+          "keys_checked": 1000,
+          "date": "2026-11-10"
+        },
+        {
+          "window": "front50",
+          "method": "scan-centre-out",
+          "start_hex": "80000000000000000000000000000000000",
+          "end_hex": "bffffffffffffffffffffffffffffffffff",
+          "keys_checked": 1000,
+          "date": "2026-11-10"
+        },
+        {
+          "window": "front50",
+          "method": "scan-centre-out",
+          "start_hex": "80000000000000000000000000000000000",
+          "end_hex": "bffffffffffffffffffffffffffffffffff",
+          "keys_checked": 1000,
+          "date": "2026-11-10"
+        },
+        {
+          "window": "front50",
+          "method": "scan-centre-out",
+          "start_hex": "80000000000000000000000000000000000",
+          "end_hex": "bffffffffffffffffffffffffffffffffff",
+          "keys_checked": 1000,
+          "date": "2026-11-17"
+        }
+      ],
+      "last_method": "kangaroo-centre-out",
+      "last_run": "2026-11-18"
+    },
+    "145": {
+      "status": "unsolved",
+      "ops_searched": 0,
+      "kangaroo_ops": 0,
+      "sequential_keys_checked": 0,
+      "ranges_covered": [],
+      "last_method": null,
+      "last_run": null
+    },
+    "150": {
+      "status": "unsolved",
+      "ops_searched": 0,
+      "kangaroo_ops": 0,
+      "sequential_keys_checked": 0,
+      "ranges_covered": [],
+      "last_method": null,
+      "last_run": null
+    },
+    "155": {
+      "status": "unsolved",
+      "ops_searched": 0,
+      "kangaroo_ops": 0,
+      "sequential_keys_checked": 0,
+      "ranges_covered": [],
+      "last_method": null,
+      "last_run": null
+    },
+    "160": {
+      "status": "unsolved",
+      "ops_searched": 0,
+      "kangaroo_ops": 0,
+      "sequential_keys_checked": 0,
+      "ranges_covered": [],
+      "last_method": null,
+      "last_run": null
+    }
+  }
+}
