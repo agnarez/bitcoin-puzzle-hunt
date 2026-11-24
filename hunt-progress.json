@@ -1,10 +1,10 @@
 {
-  "checkpoint_ops_140": 4371200000,
-  "date": "2026-11-23",
+  "checkpoint_ops_140": 5128100000,
+  "date": "2026-11-24",
   "extra_workers": {
     "c-scan": {
-      "keys_checked": 367466000000,
-      "slices_completed": 73494,
+      "keys_checked": 407806000000,
+      "slices_completed": 81562,
       "status": "running"
     }
   },
@@ -12,8 +12,8 @@
   "note": "Audited totals from the hunt's saved progress. A solve is announced only as SOLVED - puzzle #, date, ops searched. This file never contains a private key.",
   "puzzles": {
     "140": {
-      "kangaroo_ops": 4371200000,
-      "ops_searched": 4371204000,
+      "kangaroo_ops": 5128000000,
+      "ops_searched": 5128004000,
       "sequential_keys_checked": 4000,
       "status": "unsolved"
     },
@@ -49,5 +49,5 @@
     "155",
     "160"
   ],
-  "updated_utc": "2026-11-23T02:50:52Z"
+  "updated_utc": "2026-11-24T02:30:25Z"
 }
