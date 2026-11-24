@@ -26,6 +26,7 @@ been found. Current snapshot lives in [hunt-progress.json](hunt-progress.json).
 | 2026-11-18 02:11 | 555,004,000 | 151,321,000,000 | Throttle live: watchdog 15m → 5m, Kangaroo ~6.5x faster (~4,500 ops/s), C-scan ~295k keys/s |
 | 2026-11-18 04:56 | 639,404,000 | 156,141,000,000 | — |
 | 2026-11-18 07:09 | 708,104,000 | 160,136,000,000 | Latest checkpoint; both workers alive, 493 restarts |
+| 2026-11-24 09:50 | 5,138,604,000 | 408,456,000,000 | Daily report; audit PASS, checkpoint lead 200,000 (in tolerance); all 5 prizes unspent |
 
 ## Notes
 
